@@ -16,8 +16,9 @@ class handler(BaseHTTPRequestHandler):
             r = requests.get(url + country)
             data = r.json()
             currency = data[0]['currencies']
+            cur = object.keys(currency)
             res = data[0]['capital'][0]
-            message = f"The capital of {dic['country']} is {res} and the currency is {currency}"
+            message = f"The capital of {dic['country']} is {res} and the currency is {cur}"
         elif 'capital' in dic:
             capital = dic['capital']
             url ='https://restcountries.com/v3.1/capital/'
