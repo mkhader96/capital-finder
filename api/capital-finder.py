@@ -1,5 +1,4 @@
 from http.server import BaseHTTPRequestHandler
-from locale import currency
 from urllib import parse
 import requests
 
@@ -15,16 +14,16 @@ class handler(BaseHTTPRequestHandler):
             url = 'https://restcountries.com/v3.1/name/'
             r = requests.get(url + country)
             data = r.json()
-            currency = data[0][list('currencies')][0]['name']
-            message = f"The capital of {dic['country']} is {data[0]['capital'][0]} and the currency is {currency}"
+            capital = data[0]['capital'][0]
+            message = f"The capital of {dic['country']} is {capital}"
         elif 'capital' in dic:
             capital = dic['capital']
             url ='https://restcountries.com/v3.1/capital/'
             r = requests.get(url+capital)
             data = r.json()
             print(data)
-            msg = data[0]['name']['common']
-            message = f"{dic['capital']} is the capital of {msg}"
+            country = data[0]['name']['common']
+            message = f"{dic['capital']} is the capital of {country}"
         else:
             message = "Please enter a country name or a capital name"
 
